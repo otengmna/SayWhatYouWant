@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require('dotenv').config();
 //npm install concurrently
+// const mongoDBPassword = require("./hidden")
+// import mongoDBPassword from "./hidden";
 
 const noteRouter = require("./routes/note-router");
 
@@ -16,7 +18,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors())
 app.use(bodyParser.json())
 
-mongoose.connect("mongodb://localhost:27017/notesDB",
+
+mongoose.connect("mongodb+srv://admin-noel:" + process.env.SERVER_MONGO_ATLAS_PASSWORD + "@cluster0.lfyls.mongodb.net/notesDB",
 {useNewUrlParser: true,
 useUnifiedTopology: true});
 
