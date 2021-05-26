@@ -5,8 +5,6 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require('dotenv').config();
 //npm install concurrently
-// const mongoDBPassword = require("./hidden")
-// import mongoDBPassword from "./hidden";
 
 const noteRouter = require("./routes/note-router");
 
