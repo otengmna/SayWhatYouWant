@@ -17,7 +17,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 
-mongoose.connect("mongodb+srv://admin-noel:" + process.env.SERVER_MONGO_ATLAS_PASSWORD + "@cluster0.lfyls.mongodb.net/notesDB",
+mongoose.connect("mongodb+srv://admin-noel:saywhatyouwant@cluster0.lfyls.mongodb.net/notesDB",
 {useNewUrlParser: true,
 useUnifiedTopology: true});
 
