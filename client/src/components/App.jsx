@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import Header from "./Header";
-import Footer from "./Footer";
-import Note from "./Note";
-import CreateArea from "./CreateArea";
-import api from "../api/index"
+import React, { useEffect, useState } from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import Note from './Note';
+import CreateArea from './CreateArea';
+import api from '../api/index'
 
 function App() {
   const [notes, setNotes] = useState([]);
@@ -11,8 +11,9 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const result = await api.getAllNotes();
+      const resultData = result.data.data;
 
-      setNotes(result.data.data);
+      setNotes(resultData);
     };
     
     fetchData();
@@ -20,23 +21,18 @@ function App() {
 
 
   function addNote(newNote) {
+    
     setNotes(prevNotes => {
       return [...prevNotes, newNote];
     });
+
+    window.location.reload();
   }
 
   function deleteNote(id) {
-    
+
     api.deleteNote(id);
     
-
-
-    setNotes(prevNotes => {
-      return prevNotes.filter((noteItem, index) => {
-        return index !== id;
-      });
-    });
-
     window.location.reload();
   }
 

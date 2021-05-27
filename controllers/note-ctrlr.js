@@ -1,4 +1,4 @@
-const notesSchema = require("../models/db-model");
+const notesSchema = require('../models/db-model');
 
 
 // When called, this controller will respond to the client with a status 
@@ -52,11 +52,9 @@ const addNote = (req, res) => {
            })
 };
 
-const deleteNote = (req, res) => {
+const deleteNote = async (req, res) => {
 
-    notesSchema.deleteOne(
-        {_id: req.params.noteId},
-        (err, note) => {
+    await notesSchema.findOneAndDelete({_id: req.params.noteId}, (err, note) => {
           if(err){
             // res.send(err);
             return res.status(400).json({
@@ -65,9 +63,17 @@ const deleteNote = (req, res) => {
             });
           }
 
+          if (!note) {
+            return res
+                .status(404).json({ 
+                    success: false, 
+                    error: 'Note not found' 
+                })
+        }
+
           return res.status(200).json({
               success: true,
-              data: note
+              data: note._id
           });
 
         }
